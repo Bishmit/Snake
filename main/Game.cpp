@@ -5,7 +5,14 @@ Game::Game() : window(sf::VideoMode(width, height), "Snake"), score(0), fakescor
     snake = std::make_unique<Snake>(width / 2, height / 2);
     food = std::make_unique<Food>(rand() % static_cast<int>(width - 50), rand() % static_cast<int>(height - 50));
 
-    if (!font.loadFromFile("PixellettersFull.ttf")) {
+    // setting background picture
+    if (!bgtex.loadFromFile("Background/bg.jpg")) {
+        std::cout << "Error: BG could not be loaded!" << std::endl;
+    }
+    bgsprite.setTexture(bgtex);
+
+    // setting font
+    if (!font.loadFromFile("Font/PixellettersFull.ttf")) {
         std::cout << "Error: Font could not be loaded!" << std::endl;
     }
     text.setFont(font);
@@ -70,7 +77,7 @@ void Game::update() {
 
 void Game::render() {
     window.clear();
-
+    window.draw(bgsprite); 
     snake->render(window);
     food->render(window);
     window.draw(text);

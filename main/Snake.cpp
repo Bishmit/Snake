@@ -43,7 +43,7 @@ void Snake::setDirection(Direction newDirection) {
 void Snake::grow() {
     sf::RectangleShape segment;
     segment.setSize(sf::Vector2f(10, 10));
-    segment.setFillColor(sf::Color::Yellow);
+    segment.setFillColor(sf::Color::Cyan);
     segment.setPosition(position);
     body.push_back(segment);
 }

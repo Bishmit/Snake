@@ -10,6 +10,8 @@
 class Game {
 private:
     int score, fakescore;
+    sf::Texture bgtex; 
+    sf::Sprite bgsprite; 
     sf::Text text;
     sf::Font font;
     sf::RenderWindow window;

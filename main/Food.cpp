@@ -11,13 +11,13 @@ void Food::respawn(int score) {
     shape.setPosition(position);
 
     if (score % 7 == 0) {
-        shape.setFillColor(sf::Color::Cyan);
-        shape.setScale(1.5f, 1.5f);
+        shape.setFillColor(sf::Color::Yellow);
+        shape.setScale(2.f, 2.f);
         increaseByfive = true;
     }
     else {
         shape.setFillColor(sf::Color::White);
-        shape.setScale(1.f, 1.f);
+        shape.setScale(1.2f, 1.2f);
         increaseByfive = false;
     }
 }
