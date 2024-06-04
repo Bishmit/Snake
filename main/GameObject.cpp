@@ -10,7 +10,7 @@ GameObject::GameObject(float posX, float posY, float sizeX, float sizeY, sf::Col
 
 void GameObject::render(sf::RenderWindow& window) {
     shape.setPosition(position);
-    window.draw(shape);
+    window.draw(shape);    
 }
 
 bool GameObject::isColliding(const GameObject& other) const {

@@ -2,14 +2,16 @@
 #define GAMEOBJECT_H
 
 #include <SFML/Graphics.hpp>
+#include<iostream>
 
-class GameObject {
+class GameObject{
 protected:
     sf::Vector2f position;
     sf::RectangleShape shape;
     bool isMoving = false;
-
+      
 public:
+    GameObject(){ }
     GameObject(float posX, float posY, float sizeX, float sizeY, sf::Color color);
     virtual void render(sf::RenderWindow& window);
     virtual bool isColliding(const GameObject& other) const;

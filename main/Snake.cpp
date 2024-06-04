@@ -1,6 +1,6 @@
 #include "Snake.h"
 
-Snake::Snake(float posX, float posY) : GameObject(posX, posY, 10, 10, sf::Color::Green) {
+Snake::Snake(float posX, float posY) : GameObject(posX, posY, 10, 10, sf::Color::Green){
     currentDirection = Direction::None;
     nextDirection = Direction::None;
 }

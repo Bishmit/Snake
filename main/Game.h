@@ -5,15 +5,20 @@
 #include <memory>
 #include "Snake.h"
 #include "Food.h"
+#include"GameObject.h"
 
 class Game {
 private:
+    int score, fakescore;
+    sf::Text text;
+    sf::Font font;
     sf::RenderWindow window;
     std::unique_ptr<Snake> snake;
     std::unique_ptr<Food> food;
     void processEvents();
     void update();
-    void render();
+    void render(); 
+    GameObject g_obj; 
 
 public:
     Game();

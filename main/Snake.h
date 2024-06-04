@@ -11,7 +11,6 @@ class Snake : public GameObject {
     Direction currentDirection;
     Direction nextDirection;
     std::vector<sf::RectangleShape> body;
-
 public:
     Snake(float posX, float posY);
     void move();

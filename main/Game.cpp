@@ -1,9 +1,18 @@
 #include "Game.h"
 
-Game::Game() : window(sf::VideoMode(width, height), "Snake") {
-    window.setFramerateLimit(10);
+Game::Game() : window(sf::VideoMode(width, height), "Snake"), score(0), fakescore(0) {
+    window.setFramerateLimit(20);
     snake = std::make_unique<Snake>(width / 2, height / 2);
     food = std::make_unique<Food>(rand() % static_cast<int>(width - 50), rand() % static_cast<int>(height - 50));
+
+    if (!font.loadFromFile("PixellettersFull.ttf")) {
+        std::cout << "Error: Font could not be loaded!" << std::endl;
+    }
+    text.setFont(font);
+    text.setString("Score: " + std::to_string(this->score));
+    text.setCharacterSize(34);
+    text.setFillColor(sf::Color::White);
+    text.setPosition(650.f, 5.f);
 }
 
 void Game::processEvents() {
@@ -34,11 +43,27 @@ void Game::update() {
 
     if (snake->hasCollidedWithWall()) {
         // Reset the snake to start from the middle
+        score = 0; 
+        fakescore = 0; 
+        text.setString("Score: " + std::to_string(this->score));
         snake->reset();
     }
 
     if (snake->isColliding(*food)) {
-        food->respawn();
+        if (food->isBigFood()) {
+            score += 5;
+        }
+        else {
+            score++;
+        }
+        fakescore++; 
+        std::cout << score << "\n";
+        text.setString("Score: " + std::to_string(this->score));
+        text.setCharacterSize(34);
+        text.setFillColor(sf::Color::White);
+        text.setPosition(650.f, 5.f);
+
+        food->respawn(fakescore);
         snake->grow();
     }
 }
@@ -48,7 +73,7 @@ void Game::render() {
 
     snake->render(window);
     food->render(window);
-
+    window.draw(text);
     window.display();
 }
 
